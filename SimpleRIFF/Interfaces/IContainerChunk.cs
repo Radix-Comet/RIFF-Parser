@@ -9,8 +9,8 @@ namespace SimpleRIFF.Interfaces
     /// <summary>
     /// For Chunks that can contain subchunks, AKA only 'LIST' and 'RIFF'/'RIFX'
     /// </summary>
-    public interface IContainerChunk
+    public interface IContainerChunk : IGenericChunk
     {
-        public List<IGenericChunk> Children { get; }
+        public ChunkCollection Children { get; }
     }
 }

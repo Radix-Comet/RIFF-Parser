@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleRIFF.Streams;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,8 +17,12 @@ namespace SimpleRIFF.Interfaces
         /// <summary>
         /// The Chunk Identifier
         /// </summary>
-        public string CharacterCode { get; }
+        public CharacterCode CharacterCode { get; }
+        
+        public bool IsRIFF => Parent == null && (CharacterCode.Code == "RIFF" || CharacterCode.Code == "RIFX");
+        public bool IsList => CharacterCode.Code == "LIST";
 
+        void Read(RIFFStream baseStream);
     }
 
 }
