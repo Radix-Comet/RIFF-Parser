@@ -15,7 +15,7 @@ namespace SimpleRIFF
 
         public CharacterCode(byte[] data)
         {
-            if (data.Length > 4)
+            if (data.Length == 4)
                 _data = data;
         }
 
@@ -23,7 +23,14 @@ namespace SimpleRIFF
 
         public string Code
         {
-            get => _data.ToString()!;
+            get
+            {
+                string buf = string.Empty;
+                for (int i = 0; i < _data.Length; i++)
+                    buf += (char)_data[i];
+
+                return buf;
+            }
             set
             {
                 _data[0] = (byte)value[0];
@@ -55,7 +62,7 @@ namespace SimpleRIFF
             return HashCode.Combine(_data, Code);
         }
 
-        public override string ToString() => $"{_data[0]}{_data[1]}{_data[2]}{_data[3]}";
+        public override string ToString() => Code;
 
         public static bool operator ==(CharacterCode left, CharacterCode right)
         {

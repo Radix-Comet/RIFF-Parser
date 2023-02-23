@@ -1,4 +1,5 @@
 ﻿using SimpleRIFF.Interfaces;
+using SimpleRIFF.RIFF_Objects;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,7 +24,11 @@ namespace SimpleRIFF
 
         public void Add(IGenericChunk item)
         {
-            item.Parent = _hostContainer;
+            if (item.CharacterCode.Code == "LIST")
+                ((RIFFListObject)item).Parent = _hostContainer;
+            else
+                ((RIFFGenericDataObject)item).Parent = _hostContainer;
+            
             ((ICollection<IGenericChunk>)_chunks).Add(item);
         }
 

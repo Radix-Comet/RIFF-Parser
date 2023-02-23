@@ -8,12 +8,11 @@ using System.Threading.Tasks;
 
 namespace SimpleRIFF.RIFF_Objects
 {
-    public class RIFFGenericDataChunk : IDataChunk
+    public class RIFFGenericDataObject : IDataChunk
     {
-        public RIFFGenericDataChunk(IContainerChunk parent, CharacterCode characterCode)
+        public RIFFGenericDataObject(IContainerChunk parent)
         {
             this.Parent = parent;
-            this.CharacterCode = characterCode;
         }
         public IContainerChunk? Parent { get; internal set; }
 
@@ -29,7 +28,11 @@ namespace SimpleRIFF.RIFF_Objects
 
             Data = new byte[size];
 
+            
             baseStream.Read(Data, 0, size);
+
+            if (size % 2 != 0) // Is the chunk size odd?
+                baseStream.Position++; // pad
         }
     }
 }
