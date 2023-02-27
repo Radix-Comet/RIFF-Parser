@@ -5,7 +5,7 @@ A simple RIFF parser for C# with support for RIFF and RIFX formatting.
 RIFF is a generic file container used for storing data in chunks. With support for little-endian byte formatting (RIFF) and big-endian byte formatting (RIFX). While only ``RIFF``/``RIFX`` and ``LIST`` chunks may contain children, the format supports custom data chunks with assigned 4-byte character codes.
 
 ## Current Tasks
-- [ ] Reading/Writing RIFF/RIFX Files
+- [X] Reading/Writing RIFF/RIFX Files
 - [ ] Support for custom ``IDataChunk`` types
 
 ## Requirements
